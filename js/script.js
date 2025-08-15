@@ -3,10 +3,42 @@
     $('.sakura-falling').sakura();
 })(jQuery);
 
-$(document).one('click', function(){
-    document.getElementById("my_audio").play();
-    console.log('Shaadi me zaroor aana');
+var globalVariables = {
+    isMusicPlaying : false,
+    initClick : false
+}
+
+
+$(musicPlay).on('click', function(e){
+    
+    if (globalVariables.isMusicPlaying) {
+        document.getElementById("my_audio").pause();
+        globalVariables.isMusicPlaying = false
+        window.navigator.vibrate([50])
+        document.getElementById('iconSoundImg').src = 'img/sound-mute.svg'
+    } else {
+        document.getElementById("my_audio").play();
+        globalVariables.isMusicPlaying = true
+        window.navigator.vibrate([50])
+        document.getElementById('iconSoundImg').src = 'img/sound.svg'
+    }
 });
+
+$(document).ready(function() {
+    $(document).on('click', function () {
+        if (!globalVariables.initClick) {
+            document.getElementById("my_audio").play();
+            globalVariables.isMusicPlaying = true
+            document.getElementById('iconSoundImg').src = 'img/sound.svg'
+            globalVariables.initClick = true
+        }
+    })
+});
+
+// setTimeout(function () {
+//     document.getElementById('tooltip').style.display = 'none'
+// }, 5000)
+
 
 var styles = [
     'background: linear-gradient(#D33106, #571402)',
