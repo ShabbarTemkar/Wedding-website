@@ -35,9 +35,9 @@ $(document).ready(function() {
     })
 });
 
-// setTimeout(function () {
-//     document.getElementById('tooltip').style.display = 'none'
-// }, 5000)
+setTimeout(function () {
+    document.getElementById('tooltip').style.display = 'none'
+}, 5000)
 
 
 var styles = [
